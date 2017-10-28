@@ -22,14 +22,22 @@ namespace DataBaseApi
             catch(Exception)
             {
                 StreamWriter sw = new StreamWriter(path);
-                sw.WriteLine("Id, Fn, Ln, Age");
+                sw.WriteLine("Id, Fn, Ln, Age, Phones");
                 sw.Close();
             }
         }
         private Person FromCSV(string str)
         {
             string[] args = str.Split(',');
-            return new Person(Int32.Parse(args[0].Trim(' ')), args[1].Trim(' '), args[2].Trim(' '), Int32.Parse(args[3].Trim(' ')));
+            Person parsed = new Person(Int32.Parse(args[0].Trim(' ')), args[1].Trim(' '), args[2].Trim(' '), Int32.Parse(args[3].Trim(' ')));
+            if (args.Length > 4)
+            {
+                for (int i=4; i< args.Length; ++i)
+                {
+                    parsed.AddPhoneNumber(args[i].Trim(' '));
+                }
+            }
+            return parsed;
         }
         private string ToCSV(Person p)
         {
@@ -39,6 +47,13 @@ namespace DataBaseApi
             csv_string += p.Fn + ", ";
             csv_string += p.Ln + ", ";
             csv_string += p.Age;
+            if (p.PhoneNumbers != null)
+            {
+                foreach (string phone in p.PhoneNumbers)
+                {
+                    csv_string += ", "+phone;
+                }
+            }
 
             return csv_string;
         }

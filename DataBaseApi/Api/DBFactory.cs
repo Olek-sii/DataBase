@@ -19,6 +19,10 @@ namespace DataBaseApi
                 case "JSON": db = new PersonDAO_JSON(); break;
                 case "XML": db = new PersonDAO_XML(); break;
                 case "YAML": db = new PersonDAO_YAML(); break;
+                case "CSVLib": db = new PersonDAO_CSV_Lib(); break;
+                case "JSONLib": db = new PersonDAO_JSON_Lib(); break;
+                case "XMLLib": db = new PersonDAO_XML_Lib(); break;
+                case "YAMLLib": db = new PersonDAO_YAML_Lib(); break;
                 case "Mock": db = new PersonDAO_Mock(); break;
 				default: throw new ArgumentException();
 			}

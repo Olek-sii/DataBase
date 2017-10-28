@@ -1,4 +1,6 @@
-﻿namespace DataBaseApi
+﻿using System.Collections.Generic;
+
+namespace DataBaseApi
 {
 	public class Person
 	{
@@ -6,18 +8,29 @@
 		public string Fn { get; set; }
 		public string Ln { get; set; }
 		public int Age { get; set; }
+        public List<string> PhoneNumbers { get; set; }
 
-		public Person(int id, string fn, string ln, int age)
+        public Person()
+        {
+            this.PhoneNumbers = new List<string>();
+        }
+
+        public Person(int id, string fn, string ln, int age)
 		{
 			this.Id = id;
 			this.Fn = fn;
 			this.Ln = ln;
 			this.Age = age;
+            this.PhoneNumbers = new List<string>();
 		}
 
-        public Person()
+        public Person(int id, string fn, string ln, int age, List<string> phones)
         {
-
+            this.Id = id;
+            this.Fn = fn;
+            this.Ln = ln;
+            this.Age = age;
+            this.PhoneNumbers = phones;
         }
 
         public void Init(int Id, string FirstName, string LastName, int Age)
@@ -26,6 +39,11 @@
             this.Fn = FirstName;
             this.Ln = LastName;
             this.Age = Age;
+        }
+
+        public void AddPhoneNumber(string phone)
+        {
+            PhoneNumbers.Add(phone);
         }
 
         public static int CompareById(Person x, Person y)
