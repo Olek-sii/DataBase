@@ -1,0 +1,33 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBaseWPF"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="DataBaseWPF.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+	<Grid Margin="0,0,2,0">
+		<DataGrid x:Name="dataGridView" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="515"/>
+		
+		<TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="10,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<TextBox x:Name="fnTextBox" HorizontalAlignment="Left" Height="23" Margin="136,235,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+		<TextBox x:Name="lnTextBox" HorizontalAlignment="Left" Height="23" Margin="261,235,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+		<TextBox x:Name="ageTextBox" HorizontalAlignment="Left" Height="23" Margin="387,235,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+		<Button x:Name="btnCreate" Content="create" HorizontalAlignment="Left" Margin="10,263,0,0" VerticalAlignment="Top" Width="120" Click="btnCreate_Click"/>
+		<Button x:Name="btnRead" Content="read" HorizontalAlignment="Left" Margin="136,263,0,0" VerticalAlignment="Top" Width="120" Click="btnRead_Click"/>
+		<Button x:Name="btnUpdate" Content="update" HorizontalAlignment="Left" Margin="260,263,0,0" VerticalAlignment="Top" Width="120" Click="btnUpdate_Click"/>
+		<Button x:Name="btnDelete" Content="delete" HorizontalAlignment="Left" Margin="385,263,0,0" VerticalAlignment="Top" Width="120" Click="btnDelete_Click"/>
+		<ComboBox x:Name="dbSelector" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top" Width="120" IsReadOnly="True" SelectedIndex="0" SelectionChanged="dbSelector_SelectionChanged">
+			<System:String>MsSQL</System:String>
+			<System:String>MySQL</System:String>
+			<System:String>H2</System:String>
+            <System:String>MongoDB</System:String>
+            <System:String>CSV</System:String>
+            <System:String>JSON</System:String>
+            <System:String>XML</System:String>
+            <System:String>YAML</System:String>
+		</ComboBox>
+
+	</Grid>
+</Window>
