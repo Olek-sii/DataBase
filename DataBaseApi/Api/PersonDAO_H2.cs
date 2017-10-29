@@ -47,7 +47,16 @@ namespace DataBaseApi
                     string fn = rs.getString("FirstName");
                     string ln = rs.getString("LastName");
                     int age = rs.getInt("Age");
-                    persons.Add(new Person(id, fn, ln, age));
+                    List<string> phones = new List<string>();
+                    Statement statPhones = conn.createStatement();
+                    ResultSet rsPhones = stat.executeQuery("SELECT FROM phone_numbers" +
+                            $"WHERE person_id = {id};");
+                    while (rsPhones.next())
+                    {
+                        phones.Add(rsPhones.getString("phone_number"));
+                    }
+
+                    persons.Add(new Person(id, fn, ln, age, phones));
                 }
 
             }

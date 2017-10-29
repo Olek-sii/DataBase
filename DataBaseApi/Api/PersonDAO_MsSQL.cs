@@ -38,13 +38,23 @@ namespace DataBaseApi
 				connection.Open();
 				SqlCommand command = new SqlCommand("SELECT * FROM Persons;", connection);
 				SqlDataReader reader = command.ExecuteReader();
-				while (reader.Read())
+                
+                while (reader.Read())
 				{
 					int id = reader.GetInt32(0);
 					string fn = reader.GetString(1);
 					string ln = reader.GetString(2);
 					int age = reader.GetInt32(3);
-					persons.Add(new Person(id, fn, ln, age));
+                    List<string> phones = new List<string>();
+                    SqlCommand commandPhones = new SqlCommand("SELECT FROM phone_numbers" +
+                            $"WHERE person_id = {id};", connection);
+                    SqlDataReader readerPhones = command.ExecuteReader();
+                    while(readerPhones.Read())
+                    {
+                        phones.Add(reader.GetString(2));
+                    }
+
+                    persons.Add(new Person(id, fn, ln, age, phones));
 				}
 
 			}
