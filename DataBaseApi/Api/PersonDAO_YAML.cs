@@ -14,12 +14,30 @@ namespace DataBaseApi
             yaml_string += "\n  Fn:" + p.Fn;
             yaml_string += "\n  Ln:" + p.Ln;
             yaml_string += "\n  Age:" + p.Age + "\n";
+            if (p.PhoneNumbers != null)
+            {
+                yaml_string += "\n  PhoneNumbers:" + "\n";
+
+                for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                {
+                    yaml_string += "\n\t-Number" + i + ":" + p.PhoneNumbers[i] + "\n";
+                }
+            }
+
             return yaml_string;
         }
         private Person FromYAML(string str)
         {
             string[] args = str.Split('\n', ':');
-            return new Person(Int32.Parse(args[1]), args[3], args[5], Int32.Parse(args[7]));
+            Person parsed = new Person(Int32.Parse(args[1]), args[3], args[5], Int32.Parse(args[7]));
+            if (args.Length >= 10)
+            {
+                for (int i = 10; i < args.Length; i+=2)
+                {
+                    parsed.AddPhoneNumber(args[i].Trim(' '));
+                }
+            }
+            return parsed;
         }
         
         private List<string> CurrentData()

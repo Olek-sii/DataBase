@@ -10,9 +10,10 @@ namespace DataBaseApi.Api
 		int nextId = 0;
 
 		public PersonDAO_Mock() {
-			Create(new Person(0, "qwe", "rty", 4));
-			Create(new Person(0, "QWE", "rty", 44));
-		}
+			Create(new Person(0, "John", "Doe", 4));
+			Create(new Person(0, "William", "Smith", 44));
+            Create(new Person(0, "Sheila", "Smith", 37));
+        }
 
         public void Create(Person p)
         {

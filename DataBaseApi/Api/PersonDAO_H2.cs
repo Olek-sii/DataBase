@@ -19,7 +19,17 @@ namespace DataBaseApi
             {
                 Statement stat = conn.createStatement();
                 stat.execute("INSERT INTO persons (Id, FirstName, LastName, Age) " +
-                    $"VALUES ({p.Id}, '{p.Fn}', '{p.Ln}', {p.Age})");
+                    $"VALUES ({null}, '{p.Fn}', '{p.Ln}', {p.Age})");
+                if (p.PhoneNumbers != null)
+                {
+                    Statement statPhones = conn.createStatement();
+                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                    {
+                        stat.execute(
+                            "INSERT INTO [phone_numbers] (Id, person_id, phone_number) " +
+                            $"VALUES ({null}, '{p.Id}', '{p.PhoneNumbers[i]}')");
+                    }
+                }
             }
         }
 

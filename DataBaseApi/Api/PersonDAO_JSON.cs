@@ -46,6 +46,22 @@ namespace DataBaseApi
             json_string += "Fn:" + p.Fn + ",";
             json_string += "Ln:" + p.Ln + ",";
             json_string += "Age:" + p.Age + "";
+            if (p.PhoneNumbers != null)
+            {
+                json_string += ",";
+                json_string += "PhoneNumbers:";
+                json_string += "{";
+                for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                {
+                    json_string += "Number" + i + ":" + p.PhoneNumbers[i];
+                    if (i < p.PhoneNumbers.Count-1)
+                    {
+                        json_string += ",";
+                    }
+                }
+
+                json_string += "}";
+            }
             json_string += "}";
             return json_string;
         }
@@ -53,7 +69,15 @@ namespace DataBaseApi
         {
             string[] args = str.Split(':', ',', '}');
             args = args.Where(n => !string.IsNullOrEmpty(n)).ToArray();
-            return new Person(Int32.Parse(args[1]), args[3], args[5], Int32.Parse(args[7]));
+            Person parsed = new Person(Int32.Parse(args[1]), args[3], args[5], Int32.Parse(args[7]));
+            if (args.Length >= 10)
+            {
+                for (int i = 10; i < args.Length; i += 2)
+                {
+                    parsed.AddPhoneNumber(args[i].Trim(' '));
+                }
+            }
+            return parsed;
         }
         public void Create(Person p)
         {

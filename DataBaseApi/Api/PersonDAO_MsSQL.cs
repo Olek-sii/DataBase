@@ -13,9 +13,21 @@ namespace DataBaseApi
 				connection.Open();
 				SqlCommand command = new SqlCommand(
 					"INSERT INTO [Persons] (Id, Fn, Ln, Age) " +
-					$"VALUES ({p.Id}, '{p.Fn}', '{p.Ln}', {p.Age})", connection);
+					$"VALUES ({null}, '{p.Fn}', '{p.Ln}', {p.Age})", connection);
 				command.ExecuteNonQuery();
-			}
+
+                if (p.PhoneNumbers != null)
+                {
+                    SqlCommand commandPhones;
+                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                    {
+                        commandPhones = new SqlCommand(
+                            "INSERT INTO [phone_numbers] (Id, person_id, phone_number) " +
+                            $"VALUES ({null}, '{p.Id}', '{p.PhoneNumbers[i]}')", connection);
+                        commandPhones.ExecuteNonQuery();
+                    }
+                }
+            }
 		}
 
 		public List<Person> Read()
