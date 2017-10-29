@@ -10,17 +10,34 @@ namespace DataBaseApi
         private string ToXML(Person p)
         {
             string xml_string = "\t<Person>\n";
+
             xml_string += "\t\t<Id>" + p.Id + "</Id>\n";
             xml_string += "\t\t<Fn>" + p.Fn + "</Fn>\n";
             xml_string += "\t\t<Ln>" + p.Ln + "</Ln>\n";
             xml_string += "\t\t<Age>" + p.Age + "</Age>\n";
+            xml_string += "\t\t<PhoneNumbers>";
+
+            for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+            {
+                xml_string += "\t\t\t<Number" + i + ">" + p.PhoneNumbers[i] + "</Number" + i + ">\n";
+            }
+
+            xml_string += "\t\t</PhoneNumbers>\n";
             xml_string += "\t</Person>\n";
             return xml_string;
         }
         private Person FromXML(string str)
         {
             string[] args = str.Split('\n', '>', '<');
-            return new Person(Int32.Parse(args[4]), args[8], args[12], Int32.Parse(args[16]));
+            Person parsed = new Person(Int32.Parse(args[4]), args[8], args[12], Int32.Parse(args[16]));
+            if (args.Length >= 10)
+            {
+                for (int i = 10; i < args.Length; i += 2)
+                {
+                    parsed.AddPhoneNumber(args[i].Trim(' '));
+                }
+            }
+            return parsed;
         }
         private void ReCreateFromTMP()
         {

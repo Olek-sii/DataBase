@@ -14,7 +14,7 @@ namespace DataBaseApi
             yaml_string += "\n  Fn:" + p.Fn;
             yaml_string += "\n  Ln:" + p.Ln;
             yaml_string += "\n  Age:" + p.Age + "\n";
-            yaml_string += "\n  Phone Numbers:" + "\n";
+            yaml_string += "\n  PhoneNumbers:" + "\n";
 
             for (int i = 0; i < p.PhoneNumbers.Count; ++i)
             {
