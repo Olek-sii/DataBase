@@ -47,7 +47,7 @@ namespace DataBaseApi
             csv_string += p.Fn + ", ";
             csv_string += p.Ln + ", ";
             csv_string += p.Age;
-            if (p.PhoneNumbers.Count == 0)
+            if (p.PhoneNumbers.Count != 0)
             {
                 foreach (string phone in p.PhoneNumbers)
                 {

@@ -46,7 +46,7 @@ namespace DataBaseApi
             json_string += "Fn:" + p.Fn + ",";
             json_string += "Ln:" + p.Ln + ",";
             json_string += "Age:" + p.Age + "";
-            if (p.PhoneNumbers.Count == 0)
+            if (p.PhoneNumbers.Count != 0)
             {
                 json_string += ",";
                 json_string += "PhoneNumbers:";

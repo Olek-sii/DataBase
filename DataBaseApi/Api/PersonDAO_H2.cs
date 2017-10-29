@@ -20,7 +20,7 @@ namespace DataBaseApi
                 Statement stat = conn.createStatement();
                 stat.execute("INSERT INTO persons (Id, FirstName, LastName, Age) " +
                     $"VALUES ({null}, '{p.Fn}', '{p.Ln}', {p.Age})");
-                if (p.PhoneNumbers != null)
+                if (p.PhoneNumbers.Count != 0)
                 {
                     Statement statPhones = conn.createStatement();
                     for (int i = 0; i < p.PhoneNumbers.Count; ++i)
@@ -80,6 +80,16 @@ namespace DataBaseApi
                 Statement stat = conn.createStatement();
                 stat.execute("Delete FROM persons " +
                     $"WHERE Id = {p.Id};");
+                if (p.PhoneNumbers.Count != 0)
+                {
+                    Statement statPhones = conn.createStatement();
+                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                    {
+                        stat.execute(
+                            "Delete FROM phone_numbers" +
+                            $"WHERE person_id = {p.Id};");
+                    }
+                }
             }
         }
     }

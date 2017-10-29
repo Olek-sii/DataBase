@@ -23,7 +23,7 @@ namespace DataBaseApi
                     "INSERT INTO [Persons] (Id, Fn, Ln, Age) " +
                     $"VALUES ({null}, '{p.Fn}', '{p.Ln}', {p.Age})", connection);
                 command.ExecuteNonQuery();
-                if (p.PhoneNumbers != null)
+                if (p.PhoneNumbers.Count != 0)
                 {
                     SqlCommand commandPhones;
                     for (int i = 0; i < p.PhoneNumbers.Count; ++i)
@@ -78,6 +78,17 @@ namespace DataBaseApi
                 SqlCommand command = new SqlCommand("Delete FROM [Persons] " +
                     $"WHERE Id = {p.Id};", connection);
                 command.ExecuteNonQuery();
+                if (p.PhoneNumbers.Count != 0)
+                {
+                    SqlCommand commandPhones;
+                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                    {
+                        commandPhones = new SqlCommand(
+                            "Delete FROM phone_numbers" +
+                            $"WHERE person_id = {p.Id};", connection);
+                        commandPhones.ExecuteNonQuery();
+                    }
+                }
             }
 
         }

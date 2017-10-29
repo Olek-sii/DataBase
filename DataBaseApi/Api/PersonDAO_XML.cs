@@ -15,7 +15,7 @@ namespace DataBaseApi
             xml_string += "\t\t<Fn>" + p.Fn + "</Fn>\n";
             xml_string += "\t\t<Ln>" + p.Ln + "</Ln>\n";
             xml_string += "\t\t<Age>" + p.Age + "</Age>\n";
-            if (p.PhoneNumbers.Count == 0)
+            if (p.PhoneNumbers.Count != 0)
             {
                 xml_string += "\t\t<PhoneNumbers>";
 
