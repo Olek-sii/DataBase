@@ -22,7 +22,7 @@ namespace DataBaseApi
             catch(Exception)
             {
                 StreamWriter sw = new StreamWriter(path);
-                sw.WriteLine("Id, Fn, Ln, Age, Phones");
+                sw.WriteLine("Id, Fn, Ln, Age, PhoneNumbers");
                 sw.Close();
             }
         }

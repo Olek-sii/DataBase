@@ -15,14 +15,17 @@ namespace DataBaseApi
             xml_string += "\t\t<Fn>" + p.Fn + "</Fn>\n";
             xml_string += "\t\t<Ln>" + p.Ln + "</Ln>\n";
             xml_string += "\t\t<Age>" + p.Age + "</Age>\n";
-            xml_string += "\t\t<PhoneNumbers>";
-
-            for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+            if (p.PhoneNumbers != null)
             {
-                xml_string += "\t\t\t<Number" + i + ">" + p.PhoneNumbers[i] + "</Number" + i + ">\n";
-            }
+                xml_string += "\t\t<PhoneNumbers>";
 
-            xml_string += "\t\t</PhoneNumbers>\n";
+                for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                {
+                    xml_string += "\t\t\t<Number" + i + ">" + p.PhoneNumbers[i] + "</Number" + i + ">\n";
+                }
+
+                xml_string += "\t\t</PhoneNumbers>\n";
+            }
             xml_string += "\t</Person>\n";
             return xml_string;
         }
