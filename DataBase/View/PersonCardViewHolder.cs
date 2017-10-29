@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DataBaseApi;
 using DataBaseWinForms;
@@ -34,7 +31,7 @@ namespace DataBase.View {
 
 		public void Fill(List<Person> persons)
 		{
-			//Controls.Clear();
+			Controls.Clear();
 			foreach (Person person in persons)
 			{
 				Add(person);

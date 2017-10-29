@@ -1,14 +1,1 @@
-<Persons>
-	<Person>
-		<Id>1</Id>
-		<Fn>2</Fn>
-		<Ln>3</Ln>
-		<Age>4</Age>
-	</Person>
-	<Person>
-		<Id>2</Id>
-		<Fn>2</Fn>
-		<Ln>3</Ln>
-		<Age>4</Age>
-	</Person>
-</Persons>
+{Persons:[{Id:0,Fn:qwert,Ln:asdf,Age:32}]}

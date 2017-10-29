@@ -31,9 +31,18 @@ namespace DataBaseWinForms
 			dbSelector.Size = new Size(90, 30);
 			dbSelector.Items.AddRange(new string[] {
 				"Mock",
-				"MySql",
+				"MsSQL",
+				"MySQL",
+				"H2",
 				"MongoDB",
-				"MsSql"
+				"CSV",
+				"JSON",
+				"XML",
+				"YAML",
+				"CSVLib",
+				"JSONLib",
+				"XMLLib",
+				"YAMLLib"
 			});
 			dbSelector.SelectedIndexChanged += DbSelector_SelectedIndexChanged;
 			Controls.Add(dbSelector);
