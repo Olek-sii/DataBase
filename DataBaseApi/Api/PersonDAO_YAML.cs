@@ -14,7 +14,7 @@ namespace DataBaseApi
             yaml_string += "\n  Fn:" + p.Fn;
             yaml_string += "\n  Ln:" + p.Ln;
             yaml_string += "\n  Age:" + p.Age + "\n";
-            if (p.PhoneNumbers != null)
+            if (p.PhoneNumbers.Count == 0)
             {
                 yaml_string += "\n  PhoneNumbers:" + "\n";
 

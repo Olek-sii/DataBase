@@ -12,6 +12,7 @@ namespace DataBaseApi
 
         public Person()
         {
+            PhoneNumbers = new List<string>(); PhoneNumbers = new List<string>();
         }
 
         public Person(int id, string fn, string ln, int age)
@@ -20,7 +21,8 @@ namespace DataBaseApi
 			this.Fn = fn;
 			this.Ln = ln;
 			this.Age = age;
-		}
+            PhoneNumbers = new List<string>();
+        }
 
         public Person(int id, string fn, string ln, int age, List<string> phones)
         {
