@@ -68,6 +68,22 @@ namespace DataBaseApi
                 stat.execute("UPDATE persons " +
                     $"SET FirstName='{p.Fn}', LastName='{p.Ln}', Age={p.Age}" +
                     $"WHERE Id = {p.Id};");
+
+                if (p.PhoneNumbers.Count != 0)
+                {
+                    Statement statPhonesDel = conn.createStatement();
+                    statPhonesDel.execute(
+                            "Delete FROM phone_numbers" +
+                            $"WHERE person_id = {p.Id};");
+
+                    Statement statPhones = conn.createStatement();
+                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                    {
+                        stat.execute(
+                            "INSERT INTO [phone_numbers] (Id, person_id, phone_number) " +
+                            $"VALUES ({null}, '{p.Id}', '{p.PhoneNumbers[i]}')");
+                    }
+                }
             }
         }
 
@@ -83,12 +99,9 @@ namespace DataBaseApi
                 if (p.PhoneNumbers.Count != 0)
                 {
                     Statement statPhones = conn.createStatement();
-                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
-                    {
-                        stat.execute(
+                    statPhones.execute(
                             "Delete FROM phone_numbers" +
                             $"WHERE person_id = {p.Id};");
-                    }
                 }
             }
         }

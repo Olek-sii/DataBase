@@ -60,7 +60,24 @@ namespace DataBaseApi
 					$"SET Fn='{p.Fn}', Ln='{p.Ln}', Age={p.Age}" +
 					$"WHERE Id = {p.Id};", connection);
 				command.ExecuteNonQuery();
-			}
+
+                if (p.PhoneNumbers.Count != 0)
+                {
+                    SqlCommand commandDelAddPhones = new SqlCommand(
+                            "Delete FROM phone_numbers" +
+                            $"WHERE person_id = {p.Id};", connection);
+                    commandDelAddPhones.ExecuteNonQuery();
+
+                    SqlCommand commandPhones;
+                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
+                    {
+                        commandPhones = new SqlCommand(
+                            "INSERT INTO [phone_numbers] (Id, person_id, phone_number) " +
+                            $"VALUES ({null}, '{p.Id}', '{p.PhoneNumbers[i]}')", connection);
+                        commandPhones.ExecuteNonQuery();
+                    }
+                }
+            }
 		}
 
 		public void Delete(Person p)
@@ -73,14 +90,10 @@ namespace DataBaseApi
 				command.ExecuteNonQuery();
                 if (p.PhoneNumbers.Count != 0)
                 {
-                    SqlCommand commandPhones;
-                    for (int i = 0; i < p.PhoneNumbers.Count; ++i)
-                    {
-                        commandPhones = new SqlCommand(
+                    SqlCommand commandPhones;commandPhones = new SqlCommand(
                             "Delete FROM phone_numbers" + 
                             $"WHERE person_id = {p.Id};", connection);
                         commandPhones.ExecuteNonQuery();
-                    }
                 }
             }
 			
