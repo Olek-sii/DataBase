@@ -4,35 +4,40 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DataBaseApi;
 
 namespace DataBase.View {
 	class PersonCardViewHolder : Panel {
 
-		private List<PersonCardView> _personCardViews;
+		private XCommand _xCommand;
 
-		private void Init() {
-
-		}
-
-		public PersonCardViewHolder()
+		public PersonCardViewHolder(XCommand xCommand)
 		{
-			_personCardViews = new List<PersonCardView>();
-			Init();
+			_xCommand = xCommand;
 		}
 
-		public PersonCardViewHolder(List<PersonCardView> list) {
-			_personCardViews = list;
-			Init();
-		}
-
-		public void Add(PersonCardView personCardView) {
-			personCardView.Location = new System.Drawing.Point(0, _personCardViews.Count * 50);
+		public void Add(Person person) {
+			PersonCardView personCardView = new PersonCardView(person, _xCommand);
+			personCardView.Location = new Point(0, Controls.Count * 50);
 			personCardView.Width = Width;
 			personCardView.Height = 50;
-			personCardView.BackColor = Color.FromArgb(200, personCardView.Location.Y, 200);
+			personCardView.Anchor = AnchorStyles.Top;
+			personCardView.BackColor = Color.FromArgb(
+				personCardView.Location.Y % 255,
+				100,
+				200
+			);
 
-			_personCardViews.Add(personCardView);
 			Controls.Add(personCardView);
+		}
+
+		public void Fill(List<Person> persons)
+		{
+			//Controls.Clear();
+			foreach (Person person in persons)
+			{
+				Add(person);
+			}
 		}
 	}
 }

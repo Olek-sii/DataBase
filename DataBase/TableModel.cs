@@ -22,15 +22,16 @@ namespace DataBaseWinForms
 
 		public PersonCardViewHolder Read()
 		{
-			PersonCardViewHolder res = new PersonCardViewHolder();
-			List<Person> persons = db.Read();
+			//PersonCardViewHolder res = new PersonCardViewHolder();
+			//List<Person> persons = db.Read();
 
-			foreach (Person person in persons)
-			{
-				res.Add(new PersonCardView(person));
-			}
+			//foreach (Person person in persons)
+			//{
+			//	res.Add(new PersonCardView(person));
+			//}
 
-			return res;
+			//return res;
+			throw new System.Exception();
 		}
 
 		public void Update(Person p)

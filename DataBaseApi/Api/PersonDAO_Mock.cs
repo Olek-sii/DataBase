@@ -11,14 +11,16 @@ namespace DataBaseApi.Api
     {
 
         SortedDictionary<int, Person> dict = new SortedDictionary<int, Person>();
+		int nextId = 0;
 
 		public PersonDAO_Mock() {
-			Create(new Person(1, "qwe", "rty", 4));
-			Create(new Person(2, "QWE", "rty", 44));
+			Create(new Person(0, "qwe", "rty", 4));
+			Create(new Person(0, "QWE", "rty", 44));
 		}
 
         public void Create(Person p)
         {
+			p.Id = nextId++;
             dict.Add(p.Id, p);
         }
 
