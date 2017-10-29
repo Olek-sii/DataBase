@@ -10,7 +10,7 @@ namespace DataBaseWinForms
 
 			Width = 365;
 			Height = 480;
-			Frame frame = new Frame();
+			ManyPersonFrame frame = new ManyPersonFrame();
 			frame.Dock = DockStyle.Fill;
 			Controls.Add(frame);
 		}

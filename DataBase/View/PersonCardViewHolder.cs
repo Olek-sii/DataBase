@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DataBaseApi;
+using DataBaseWinForms;
 
 namespace DataBase.View {
 	class PersonCardViewHolder : Panel {

@@ -201,7 +201,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="XCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="msSqlDb.mdf">
