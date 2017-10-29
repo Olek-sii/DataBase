@@ -25,7 +25,7 @@ namespace DataBaseApi
                     Statement statPhones = conn.createStatement();
                     for (int i = 0; i < p.PhoneNumbers.Count; ++i)
                     {
-                        stat.execute(
+                        statPhones.execute(
                             "INSERT INTO [phone_numbers] (Id, person_id, phone_number) " +
                             $"VALUES ({null}, '{p.Id}', '{p.PhoneNumbers[i]}')");
                     }

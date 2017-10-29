@@ -48,7 +48,7 @@ namespace DataBaseApi
                     List<string> phones = new List<string>();
                     SqlCommand commandPhones = new SqlCommand("SELECT FROM phone_numbers" +
                             $"WHERE person_id = {id};", connection);
-                    SqlDataReader readerPhones = command.ExecuteReader();
+                    SqlDataReader readerPhones = commandPhones.ExecuteReader();
                     while(readerPhones.Read())
                     {
                         phones.Add(reader.GetString(2));
